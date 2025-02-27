@@ -4,11 +4,13 @@ import {MongoClient} from "mongodb";
 import {BackendController} from "./backend.controller";
 import {BackendService} from "./backend.service";
 import {ParentsModule} from "../parents/parents.module";
+import {UsersModule} from "../users/users.module";
 
 @Module({
     imports: [
         MongooseModule.forRoot('mongodb+srv://nightmareahouse:35wkWrxHTfquFBnE@familytreecluster.h5zmv.mongodb.net/familty_tree_db?retryWrites=true&w=majority'),
-        ParentsModule
+        ParentsModule,
+        UsersModule
     ],
     controllers: [BackendController],
     providers: [BackendService],

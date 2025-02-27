@@ -10,7 +10,25 @@ export class ParentsService {
     }
 
     async getAllParents(): Promise<Parent[]> {
-        console.log(await this.parentModel.find().exec())
-        return await this.parentModel.find().exec(); // Возвращаем все документы коллекции
+        const response = []
+
+        const allParents = await this.parentModel.find().exec();
+
+        allParents.forEach((parent) => {
+            response.push({
+                id: parent.id,
+                name: parent.name,
+                lastName: parent.lastName,
+                gender: parent.gender,
+                parent: parent.parent,
+            })
+        })
+
+        return response;
+    }
+
+    async addNewParent(parent: Parent) {
+        const newParent = new this.parentModel(parent);
+        return newParent.save();
     }
 }
